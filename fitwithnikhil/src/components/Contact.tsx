@@ -2,6 +2,8 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { MapPin, Phone, Clock, MessageCircle, Send, ArrowRight } from "lucide-react";
+import GradientText from "./reactbits/GradientText";
+import SpotlightCard from "./reactbits/SpotlightCard";
 
 export default function Contact() {
   const ref = useRef(null);
@@ -29,7 +31,10 @@ export default function Contact() {
             Get In Touch
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mt-3">
-            Start Your <span className="gradient-text">Journey Today</span>
+            Start Your{" "}
+            <GradientText colors={["#39ff14", "#00f0ff", "#39ff14"]} animationSpeed={5}>
+              Journey Today
+            </GradientText>
           </h2>
           <p className="text-gray-400 mt-4 max-w-2xl mx-auto text-lg">
             Take the first step towards your transformation.
@@ -100,6 +105,7 @@ export default function Contact() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="space-y-6"
           >
+            <SpotlightCard spotlightColor="rgba(57, 255, 20, 0.12)" className="rounded-2xl">
             <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 space-y-6">
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 rounded-xl bg-[#39ff14]/10 flex items-center justify-center flex-shrink-0">
@@ -131,6 +137,7 @@ export default function Contact() {
                 </div>
               </div>
             </div>
+            </SpotlightCard>
 
             {/* Quick WhatsApp Button */}
             <a

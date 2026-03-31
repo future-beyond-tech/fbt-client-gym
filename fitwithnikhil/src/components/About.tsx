@@ -3,6 +3,9 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Award, Users, Target, Clock, Flame, HeartPulse } from "lucide-react";
+import GradientText from "./reactbits/GradientText";
+import CountUp from "./reactbits/CountUp";
+import SpotlightCard from "./reactbits/SpotlightCard";
 
 const highlights = [
   { icon: Award, label: "Certified Trainer", desc: "Professionally certified fitness personal trainer" },
@@ -38,11 +41,11 @@ export default function About() {
                 <p className="text-[#39ff14] font-medium mt-1">Transformation Specialist</p>
                 <div className="mt-6 grid grid-cols-2 gap-4 w-full max-w-xs">
                   <div className="bg-black/40 rounded-xl p-3 text-center border border-[#39ff14]/20">
-                    <div className="text-2xl font-bold text-[#39ff14]">500+</div>
+                    <div className="text-2xl font-bold text-[#39ff14]"><CountUp to={500} duration={2.5} separator="," />+</div>
                     <div className="text-xs text-gray-400">Clients Trained</div>
                   </div>
                   <div className="bg-black/40 rounded-xl p-3 text-center border border-[#00f0ff]/20">
-                    <div className="text-2xl font-bold text-[#00f0ff]">5+</div>
+                    <div className="text-2xl font-bold text-[#00f0ff]"><CountUp to={5} duration={2} />+</div>
                     <div className="text-xs text-gray-400">Years Exp</div>
                   </div>
                 </div>
@@ -63,7 +66,10 @@ export default function About() {
               About Your Trainer
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mt-3 leading-tight">
-              Meet <span className="gradient-text">Nikhil</span>
+              Meet{" "}
+              <GradientText colors={["#39ff14", "#00f0ff", "#39ff14"]} animationSpeed={5}>
+                Nikhil
+              </GradientText>
             </h2>
             <p className="text-gray-400 mt-6 text-lg leading-relaxed">
               A certified fitness personal trainer and motivator based in Hyderabad,
@@ -85,7 +91,7 @@ export default function About() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: 0.4 + i * 0.1 }}
-                  className="p-4 rounded-xl bg-white/[0.03] border border-white/5 hover:border-[#39ff14]/30 transition-colors group"
+                  className="p-4 rounded-xl bg-white/[0.03] border border-white/5 hover:border-[#39ff14]/30 transition-all duration-300 group hover:-translate-y-1"
                 >
                   <item.icon className="w-6 h-6 text-[#39ff14] group-hover:scale-110 transition-transform" />
                   <div className="mt-2 text-sm font-semibold text-white">{item.label}</div>

@@ -2,6 +2,9 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, TrendingDown } from "lucide-react";
+import TiltedCard from "./reactbits/TiltedCard";
+import GradientText from "./reactbits/GradientText";
+import CountUp from "./reactbits/CountUp";
 
 const transformations = [
   { name: "Client A", before: "102", after: "76.5", unit: "kgs", duration: "4 months", type: "Weight Loss" },
@@ -34,7 +37,10 @@ export default function Transformations() {
             Real Results
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mt-3">
-            Client <span className="gradient-text">Transformations</span>
+            Client{" "}
+            <GradientText colors={["#39ff14", "#00f0ff", "#39ff14"]} animationSpeed={5}>
+              Transformations
+            </GradientText>
           </h2>
           <p className="text-gray-400 mt-4 max-w-2xl mx-auto text-lg">
             Real people. Real results. Every transformation is backed by dedication,
@@ -49,6 +55,7 @@ export default function Transformations() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="relative max-w-4xl mx-auto"
         >
+          <TiltedCard maxTilt={5} glareColor="#39ff14" className="rounded-2xl">
           <div className="rounded-2xl border border-white/10 bg-white/[0.02] overflow-hidden">
             <div className="grid md:grid-cols-2">
               {/* Before */}
@@ -58,7 +65,7 @@ export default function Transformations() {
                 </span>
                 <div className="w-40 h-40 mx-auto rounded-2xl bg-gradient-to-br from-[#ff3131]/10 to-white/5 border border-white/10 flex items-center justify-center">
                   <span className="text-5xl font-black text-[#ff3131]">
-                    {transformations[activeIndex].before}
+                    <CountUp to={parseFloat(transformations[activeIndex].before)} duration={1.5} />
                   </span>
                 </div>
                 <div className="text-gray-400 mt-3 text-sm">{transformations[activeIndex].unit}</div>
@@ -71,7 +78,7 @@ export default function Transformations() {
                 </span>
                 <div className="w-40 h-40 mx-auto rounded-2xl bg-gradient-to-br from-[#39ff14]/10 to-white/5 border border-[#39ff14]/20 flex items-center justify-center">
                   <span className="text-5xl font-black text-[#39ff14]">
-                    {transformations[activeIndex].after}
+                    <CountUp to={parseFloat(transformations[activeIndex].after)} duration={1.5} />
                   </span>
                 </div>
                 <div className="text-gray-400 mt-3 text-sm">{transformations[activeIndex].unit}</div>
@@ -94,6 +101,7 @@ export default function Transformations() {
               </div>
             </div>
           </div>
+          </TiltedCard>
 
           {/* Navigation */}
           <div className="flex items-center justify-center gap-4 mt-6">

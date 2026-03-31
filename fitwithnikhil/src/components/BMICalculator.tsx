@@ -2,6 +2,8 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { Calculator, ArrowRight, MessageCircle } from "lucide-react";
+import GradientText from "./reactbits/GradientText";
+import SpotlightCard from "./reactbits/SpotlightCard";
 
 type BMICategory = {
   label: string;
@@ -78,7 +80,10 @@ export default function BMICalculator() {
             Know Your Numbers
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mt-3">
-            BMI <span className="neon-text-cyan">Calculator</span>
+            BMI{" "}
+            <GradientText colors={["#00f0ff", "#39ff14", "#00f0ff"]} animationSpeed={5}>
+              Calculator
+            </GradientText>
           </h2>
           <p className="text-gray-400 mt-4 max-w-2xl mx-auto text-lg">
             Check your Body Mass Index and get a personalized recommendation
@@ -92,6 +97,7 @@ export default function BMICalculator() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="max-w-2xl mx-auto"
         >
+          <SpotlightCard spotlightColor="rgba(0, 240, 255, 0.15)" className="rounded-2xl">
           <div className="rounded-2xl border border-white/10 bg-white/[0.02] overflow-hidden">
             {/* Input Section */}
             <div className="p-6 sm:p-8">
@@ -196,6 +202,7 @@ export default function BMICalculator() {
               </motion.div>
             )}
           </div>
+          </SpotlightCard>
         </motion.div>
       </div>
     </section>

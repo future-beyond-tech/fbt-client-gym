@@ -1,6 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
 import { ChevronDown, Play } from "lucide-react";
+import SplitText from "./reactbits/SplitText";
+import CountUp from "./reactbits/CountUp";
+import GradientText from "./reactbits/GradientText";
+import StarBorder from "./reactbits/StarBorder";
 
 export default function Hero() {
   return (
@@ -12,7 +16,7 @@ export default function Hero() {
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 -left-20 w-72 h-72 bg-[#39ff14]/5 rounded-full blur-3xl animate-pulse" />
         <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-[#00f0ff]/5 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#39ff14]/3 rounded-full blur-[100px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#39ff14]/[0.02] rounded-full blur-[100px]" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
@@ -30,17 +34,38 @@ export default function Hero() {
             </span>
           </motion.div>
 
-          {/* Main Heading */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[0.9] tracking-tight"
-          >
-            <span className="block text-white">TRANSFORM</span>
-            <span className="block gradient-text mt-1">YOUR BODY</span>
-            <span className="block text-white mt-1">YOUR LIFE</span>
-          </motion.h1>
+          {/* Main Heading — SplitText animation */}
+          <div className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[0.9] tracking-tight">
+            <SplitText
+              text="TRANSFORM"
+              tag="div"
+              className="text-white justify-center"
+              delay={0.04}
+              duration={0.6}
+              from={{ opacity: 0, y: 50 }}
+              to={{ opacity: 1, y: 0 }}
+              splitBy="chars"
+            />
+            <div className="mt-1 flex justify-center">
+              <GradientText
+                colors={["#39ff14", "#00f0ff", "#39ff14", "#00f0ff"]}
+                animationSpeed={4}
+                className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black"
+              >
+                YOUR BODY
+              </GradientText>
+            </div>
+            <SplitText
+              text="YOUR LIFE"
+              tag="div"
+              className="text-white mt-1 justify-center"
+              delay={0.04}
+              duration={0.6}
+              from={{ opacity: 0, y: 50 }}
+              to={{ opacity: 1, y: 0 }}
+              splitBy="chars"
+            />
+          </div>
 
           {/* Subtitle */}
           <motion.p
@@ -54,30 +79,40 @@ export default function Hero() {
             <span className="text-[#39ff14] font-semibold">proven results</span>.
           </motion.p>
 
-          {/* Stats Row */}
+          {/* Stats Row with CountUp */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.7 }}
             className="flex flex-wrap justify-center gap-8 sm:gap-12 mt-10"
           >
-            {[
-              { num: "500+", label: "Transformations" },
-              { num: "5+", label: "Years Experience" },
-              { num: "98%", label: "Client Satisfaction" },
-            ].map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="text-3xl sm:text-4xl font-black text-[#39ff14]">
-                  {stat.num}
-                </div>
-                <div className="text-xs sm:text-sm text-gray-500 mt-1 uppercase tracking-wider">
-                  {stat.label}
-                </div>
+            <div className="text-center">
+              <div className="text-3xl sm:text-4xl font-black text-[#39ff14]">
+                <CountUp to={500} duration={2.5} separator="," />+
               </div>
-            ))}
+              <div className="text-xs sm:text-sm text-gray-500 mt-1 uppercase tracking-wider">
+                Transformations
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl sm:text-4xl font-black text-[#39ff14]">
+                <CountUp to={5} duration={2} />+
+              </div>
+              <div className="text-xs sm:text-sm text-gray-500 mt-1 uppercase tracking-wider">
+                Years Experience
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl sm:text-4xl font-black text-[#39ff14]">
+                <CountUp to={98} duration={2.5} />%
+              </div>
+              <div className="text-xs sm:text-sm text-gray-500 mt-1 uppercase tracking-wider">
+                Client Satisfaction
+              </div>
+            </div>
           </motion.div>
 
-          {/* CTAs */}
+          {/* CTAs with StarBorder */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -92,12 +127,14 @@ export default function Hero() {
             >
               Start Free Trial
             </a>
-            <a
-              href="#transformations"
-              className="w-full sm:w-auto px-8 py-4 border border-white/20 text-white font-semibold text-lg rounded-full hover:border-[#00f0ff]/50 hover:text-[#00f0ff] transition-colors flex items-center justify-center gap-2"
-            >
-              <Play className="w-5 h-5" /> See Transformations
-            </a>
+            <StarBorder as="div" color="#00f0ff" speed="4s" className="w-full sm:w-auto cursor-pointer" style={{ cursor: "pointer" }}>
+              <a
+                href="#transformations"
+                className="flex items-center justify-center gap-2 px-8 py-4 text-white font-semibold text-lg"
+              >
+                <Play className="w-5 h-5" /> See Transformations
+              </a>
+            </StarBorder>
           </motion.div>
         </div>
       </div>

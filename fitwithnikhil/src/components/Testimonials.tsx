@@ -2,6 +2,8 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
+import GradientText from "./reactbits/GradientText";
+import SpotlightCard from "./reactbits/SpotlightCard";
 
 const testimonials = [
   {
@@ -59,7 +61,10 @@ export default function Testimonials() {
             Client Stories
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mt-3">
-            What They <span className="gradient-text">Say</span>
+            What They{" "}
+            <GradientText colors={["#39ff14", "#00f0ff", "#39ff14"]} animationSpeed={5}>
+              Say
+            </GradientText>
           </h2>
         </motion.div>
 
@@ -70,6 +75,7 @@ export default function Testimonials() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="max-w-3xl mx-auto mb-12"
         >
+          <SpotlightCard spotlightColor="rgba(57, 255, 20, 0.12)" className="rounded-2xl">
           <div className="relative rounded-2xl p-8 sm:p-10 border border-white/10 bg-white/[0.02]">
             <Quote className="absolute top-6 right-6 w-10 h-10 text-[#39ff14]/10" />
             <div className="flex items-center gap-1 mb-4">
@@ -90,6 +96,7 @@ export default function Testimonials() {
               </span>
             </div>
           </div>
+          </SpotlightCard>
 
           {/* Navigation */}
           <div className="flex items-center justify-center gap-4 mt-6">
